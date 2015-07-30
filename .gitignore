@@ -19,3 +19,9 @@
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+BackupUnusedAssets/*
+RequestPackages/*
+Assets/PQAssets/
+Assets/Brick Ground/
+Assets/PQAssets.meta
+Assets/Brick Ground.meta
