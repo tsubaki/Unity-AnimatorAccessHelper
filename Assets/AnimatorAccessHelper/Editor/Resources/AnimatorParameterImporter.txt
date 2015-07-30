@@ -1,0 +1,12 @@
+using UnityEngine;
+
+namespace AnimatorParameter
+{{
+	[System.Serializable]
+	public class {0}
+	{{
+		public Animator animator;
+
+{1}
+	}}
+}}
