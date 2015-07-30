@@ -1,4 +1,11 @@
-﻿#region using
+﻿/**
+	CreateAnimatorParameterSettings
+
+	Copyright (c) 2015 Tatsuhiko Yamamura
+    This software is released under the MIT License.
+    http://opensource.org/licenses/mit-license.php
+*/
+#region using
 using UnityEngine;
 using System.Collections;
 using UnityEditor;
@@ -76,14 +83,14 @@ public class CreateAnimatorParameterSettings : AssetPostprocessor
 	static string GenerateCode(AnimatorController animatorController)
 	{
 		string intent = "		";
-		string floatPropertyTemplate = intent + "public readonly static int {0}Hash = {1}; public float {0}{{ get{{ return animator.GetFloat({0}Hash); }} set{{ animator.SetFloat({0}Hash, value); }}}}";
-		string intPropertyTemplate = intent + "private readonly static int {0}Hash = {1}; public int {0}{{ get{{ return animator.GetInteger({0}Hash); }} set{{ animator.SetInteger({0}Hash, value); }}}}";
-		string boolPropertyTemplate = intent + "private readonly static int {0}Hash = {1}; public bool {0}{{ get{{ return animator.GetBool({0}Hash); }} set{{ animator.SetBool({0}Hash, value); }}}}";
-		string triggerTemplate = intent + "private readonly static int {0}Hash = {1}; public void {0}(){{ animator.SetTrigger ({0}Hash); }} public void Reset{0}() {{ animator.ResetTrigger ({0}Hash); }}";
+		string floatPropertyTemplate = intent + "protected readonly static int {0}Hash = {1}; public float {0}{{ get{{ return animator.GetFloat({0}Hash); }} set{{ animator.SetFloat({0}Hash, value); }}}}";
+		string intPropertyTemplate = intent + "protected readonly static int {0}Hash = {1}; public int {0}{{ get{{ return animator.GetInteger({0}Hash); }} set{{ animator.SetInteger({0}Hash, value); }}}}";
+		string boolPropertyTemplate = intent + "protected readonly static int {0}Hash = {1}; public bool {0}{{ get{{ return animator.GetBool({0}Hash); }} set{{ animator.SetBool({0}Hash, value); }}}}";
+		string triggerTemplate = intent + "protected readonly static int {0}Hash = {1}; public void {0}(){{ animator.SetTrigger ({0}Hash); }} public void Reset{0}() {{ animator.ResetTrigger ({0}Hash); }}";
 
 		string stateTemplate = intent + "public static readonly int {0} = {1};";
 
-		var codePath = GetPath ("Assets/Editor/Resources/AnimatorParameterImporter.txt");
+		var codePath = GetPath ("Assets/AnimatorAccessHelper/Editor/Resources/AnimatorParameterImporter.txt");
 		var codeTemplate = File.ReadAllText (codePath);
 		Assert.IsNotNull (codeTemplate);
 
