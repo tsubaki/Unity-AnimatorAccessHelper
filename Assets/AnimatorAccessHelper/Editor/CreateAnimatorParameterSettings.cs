@@ -18,6 +18,7 @@ using System.IO;
 using UnityEngine.Assertions;
 using System.Text;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 
 #endregion
@@ -75,9 +76,7 @@ public class CreateAnimatorParameterSettings : AssetPostprocessor
 	}
 
 	static string StripSpace(string name){
-		return name
-				.Replace (" ", "_")
-			   	.Replace(".", "_");
+		return Regex.Replace(name, "\\W*", "_");
 	}
 
 	static string GenerateCode(AnimatorController animatorController)
