@@ -76,7 +76,7 @@ public class CreateAnimatorParameterSettings : AssetPostprocessor
 	}
 
 	static string StripSpace(string name){
-		return Regex.Replace(name, "\\W*", "_");
+		return Regex.Replace(name, "\\W", "_");
 	}
 
 	static string GenerateCode(AnimatorController animatorController)
@@ -118,7 +118,7 @@ public class CreateAnimatorParameterSettings : AssetPostprocessor
 			fields.AppendLine(code);
 		}
 
-		return string.Format(codeTemplate, animatorController.name, fields.ToString());
+		return string.Format(codeTemplate, StripSpace(animatorController.name), fields.ToString());
 	}
 
 	static void StateCheck(AnimatorStateMachine statemachiene, string stateNameSpace, ref Dictionary<string, int> hashState)
